@@ -1,6 +1,6 @@
 ## Test Plan
 
-### Case 1: Inloggen met geldige referenties
+### Case 1: Account maken
 
 **Testscenario:**
 - Open de registerpagina.

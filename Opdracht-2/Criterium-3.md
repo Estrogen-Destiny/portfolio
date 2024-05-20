@@ -6,3 +6,4 @@
 
 ## Security:
 - Maatregelen zoals hashing van wachtwoorden worden gebruikt om gebruikers zijn wachtwoorden veilig te houden.
+
