@@ -13,4 +13,4 @@
 
 ## Conclusie
 
-De testgevallen zijn succesvol uitgevoerd en alle verwachte resultaten zijn behaald. De applicatie lijkt correct te functioneren op basis van de gedefinieerde testscenario's maar er moet nog genoeg gedaan worden om het veilig te maken zodat er geen xss kan worden uitgevoerd.
+De testgevallen zijn succesvol uitgevoerd en alle verwachte resultaten zijn behaald. De applicatie lijkt correct te functioneren op basis van de gedefinieerde testscenario's maar er moet nog genoeg gedaan worden om het veilig te maken zodat er geen xss kan worden uitgevoerd. En er zijn nog genoeg verbeteringen die gedaan kunnen worden. 
