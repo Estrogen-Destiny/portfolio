@@ -1,76 +1,146 @@
-## Test Plan
+# Test Plan
 
-### Case 1: Account maken
+## Testplan: Account aanmaken
 
+### Hoofdscenario: Succesvolle registratie
 **Testscenario:**
-- Open de registerpagina.
-- Voer verschillende combinaties van gebruikersnamen, e-mails en wachtwoorden in.
-- Klik op de register knop.
+1. Open de registerpagina.
+2. Voer een geldige combinatie van gebruikersnaam, e-mail en wachtwoord in.
+3. Klik op de register knop.
 
 **Testgegevens:**
-1. - Gebruikersnaam: voorbeel
-    - Email: test@example.com
-    - Wachtwoord: voorbeeld_wachtwoord
-2. - Gebruikersnaam: ,test,
-    - Email: test2@example.com
-    - Wachtwoord: test
-3. - Gebruikersnaam: voorbeeld_gebruiker
-    - Email: test3@example.com
-    - Wachtwoord: voorbeeld_wachtwoord
-4. - Gebruikersnaam: speciale ```<svg/onload=alert('XSS Attack')>```
-    - Email: test4@example.com
-    - Wachtwoord: passwith"XSS"
-5. - Gebruikersnaam: testuser
-    - Email: test5@example.com
-    - Wachtwoord: ```<script>alert('XSS Attack!');</script>```
-6. - Gebruikersnaam: testusers
-    - Email: test5@example.com
-    - Wachtwoord: biepboepboep
+- Gebruikersnaam: voorbeeldgebruiker
+- Email: voorbeeld@example.com
+- Wachtwoord: geldig_wachtwoord123
 
 **Verwacht resultaat:**
-- Voor alle geldige combinaties met een wachtwoord van minimaal 6 characters zou de gebruiker moeten kunnen registreren en doorgestuurd worden naar de indexpagina.
-- xss is mogelijk om in de database te stoppen hierdoor is het erg onveilig en heeft een hacker makkelijk toegang to data en de mogelijkheid om dingen aan te passen.
+- De gebruiker wordt succesvol geregistreerd.
+- De gebruiker wordt doorgestuurd naar de indexpagina.
+- Een bevestigingsbericht wordt weergegeven met "Registratie succesvol".
 
-### Case 2: Een nieuw project aanmaken
-
+### Alternatief scenario 1: Gebruikersnaam al in gebruik
 **Testscenario:**
-- Open de pagina voor het aanmaken van een nieuw project.
-- Voer verschillende projectnamen en beschrijvingen in.
-- Klik op de knop 'aanmaken'.
+1. Open de registerpagina.
+2. Voer een gebruikersnaam in die al in gebruik is.
+3. Klik op de register knop.
 
 **Testgegevens:**
-1. - Projectnaam: Nieuw Project 1
-    - Projectbeschrijving: Dit is een testproject 1.
-2. - Projectnaam: Project 2
-    - Projectbeschrijving: Beschrijving met speciale tekens: ```<img src="x" onerror="alert('XSS Attack!')" />```
-3. - Projectnaam: XSS Project
-    - Projectbeschrijving: Dit is een project met een XSS-aanval: ```<script>alert('XSS Attack!');</script>```
+- Gebruikersnaam: reedsbestaandegebruiker
+- Email: nieuwe@example.com
+- Wachtwoord: nieuw_wachtwoord123
 
 **Verwacht resultaat:**
-- Alle projecten zouden succesvol moeten worden aangemaakt en toegevoegd worden aan de lijst van projecten van de gebruiker.
-- De gebruiker zou doorgestuurd moeten worden naar de indexpagina waar de nieuwe projecten getoond worden.
-- xss is mogelijk om in de database te stoppen hierdoor is het erg onveilig en heeft een hacker makkelijk toegang to data en de mogelijkheid om dingen aan te passen.
+- De registratie mislukt.
+- Een foutmelding wordt weergegeven met "Gebruikersnaam al in gebruik, kies een andere gebruikersnaam".
 
-### Case 3: Een bestaand project bewerken
-
+### Alternatief scenario 2: Ongeldige e-mail
 **Testscenario:**
-- Open de indexpagina.
-- Zoek een bestaand project om te bewerken.
-- Bewerk de projectnaam en beschrijving met verschillende waarden.
-- Klik op de knop 'wijzigingen opslaan'.
+1. Open de registerpagina.
+2. Voer een ongeldige e-mail in.
+3. Klik op de register knop.
 
 **Testgegevens:**
-1. - Projectnaam: Bijgewerkt Project 1
-    - Projectbeschrijving: Dit is de bijgewerkte beschrijving voor project 1.
-2. - Projectnaam: Project 2 ```<img src="x" onerror="alert('XSS Attack!')" />```
-    - Projectbeschrijving: Beschrijving met XSS-aanval: ```<script>alert('XSS Attack!');</script>```
-3. - Projectnaam: XSS Bewerkt Project
-    - Projectbeschrijving: Beschrijving met XSS-aanval: ```<img src="x" onerror="alert('XSS Attack!')" />```
+- Gebruikersnaam: nieuwegebruiker
+- Email: ongeldigemailformaat
+- Wachtwoord: geldig_wachtwoord123
 
 **Verwacht resultaat:**
-- Alle wijzigingen aan de projectdetails zouden succesvol moeten zijn.
-- De bijgewerkte projectinformatie zou getoond moeten worden op de indexpagina.
-- Eventuele wijzigingen zouden in de database opgeslagen moeten worden.
-- xss is mogelijk om in de database te stoppen hierdoor is het erg onveilig en heeft een hacker makkelijk toegang to data en de mogelijkheid om dingen aan te passen.
+- De registratie mislukt.
+- Een foutmelding wordt weergegeven met "Ongeldig e-mailformaat, voer een geldige e-mail in".
 
-Door het toevoegen van speciale tekens en mogelijke XSS-aanvallen in de testgegevens, kunnen we het systeem testen op kwetsbaarheden en potentiële verbeterpunten identificeren.
+## Case 2: Een nieuw project aanmaken
+
+### Hoofdscenario: Succesvol project aanmaken
+**Testscenario:**
+1. Open de pagina voor het aanmaken van een nieuw project.
+2. Voer een geldige projectnaam en beschrijving in.
+3. Klik op de knop 'aanmaken'.
+
+**Testgegevens:**
+- Projectnaam: Nieuw Project
+- Projectbeschrijving: Dit is een testproject.
+
+**Verwacht resultaat:**
+- Het project wordt succesvol aangemaakt.
+- De gebruiker wordt doorgestuurd naar de indexpagina.
+- Het nieuwe project wordt in de lijst van projecten getoond.
+
+### Alternatief scenario 1: Projectnaam al in gebruik
+**Testscenario:**
+1. Open de pagina voor het aanmaken van een nieuw project.
+2. Voer een projectnaam in die al in gebruik is.
+3. Klik op de knop 'aanmaken'.
+
+**Testgegevens:**
+- Projectnaam: Bestaand Project
+- Projectbeschrijving: Dit is een testproject met een bestaande naam.
+
+**Verwacht resultaat:**
+- Het project wordt niet aangemaakt.
+- Een foutmelding wordt weergegeven met "Projectnaam al in gebruik, kies een andere naam".
+
+### Alternatief scenario 2: XSS-aanval in beschrijving
+**Testscenario:**
+1. Open de pagina voor het aanmaken van een nieuw project.
+2. Voer een projectnaam en een beschrijving met een XSS-aanval in.
+3. Klik op de knop 'aanmaken'.
+
+**Testgegevens:**
+- Projectnaam: Veilig Project
+- Projectbeschrijving: `<script>alert('XSS Attack!');</script>`
+
+**Verwacht resultaat:**
+- Het project wordt niet aangemaakt.
+- Een foutmelding wordt weergegeven met "Ongeldige invoer, speciale tekens zijn niet toegestaan".
+
+## Case 3: Een bestaand project bewerken
+
+### Hoofdscenario: Succesvolle bewerking
+**Testscenario:**
+1. Open de indexpagina.
+2. Zoek een bestaand project om te bewerken.
+3. Bewerk de projectnaam en beschrijving met geldige waarden.
+4. Klik op de knop 'wijzigingen opslaan'.
+
+**Testgegevens:**
+- Projectnaam: Bijgewerkt Project
+- Projectbeschrijving: Dit is de bijgewerkte beschrijving.
+
+**Verwacht resultaat:**
+- De wijzigingen worden succesvol opgeslagen.
+- De bijgewerkte projectinformatie wordt op de indexpagina getoond.
+- Een bevestigingsbericht wordt weergegeven met "Wijzigingen succesvol opgeslagen".
+
+### Alternatief scenario 1: Ongeldige projectnaam
+**Testscenario:**
+1. Open de indexpagina.
+2. Zoek een bestaand project om te bewerken.
+3. Bewerk de projectnaam met een ongeldige naam.
+4. Klik op de knop 'wijzigingen opslaan'.
+
+**Testgegevens:**
+- Projectnaam: `<img src="x" onerror="alert('XSS Attack!')" />`
+- Projectbeschrijving: Geldige beschrijving.
+
+**Verwacht resultaat:**
+- De wijzigingen worden niet opgeslagen.
+- Een foutmelding wordt weergegeven met "Ongeldige projectnaam, speciale tekens zijn niet toegestaan".
+
+### Alternatief scenario 2: XSS-aanval in beschrijving
+**Testscenario:**
+1. Open de indexpagina.
+2. Zoek een bestaand project om te bewerken.
+3. Bewerk de projectbeschrijving met een XSS-aanval.
+4. Klik op de knop 'wijzigingen opslaan'.
+
+**Testgegevens:**
+- Projectnaam: Geldige Naam
+- Projectbeschrijving: `<script>alert('XSS Attack!');</script>`
+
+**Verwacht resultaat:**
+- De wijzigingen worden niet opgeslagen.
+- Een foutmelding wordt weergegeven met "Ongeldige invoer, speciale tekens zijn niet toegestaan".
+
+---
+
+Met deze testplannen kunnen we niet alleen de functionaliteit van de applicatie valideren, maar ook potentiële beveiligingsrisico's identificeren, zoals XSS-aanvallen. Het testen van verschillende scenario's zorgt ervoor dat de applicatie robuust en veilig blijft.
